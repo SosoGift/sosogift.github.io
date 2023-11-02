@@ -6,6 +6,7 @@
 
 ;(function(){
 
+
 /**
  * A convenience function for configuring and constructing
  * a new lunr Index.
@@ -37,6 +38,18 @@
  * @see {@link lunr.stemmer}
  * @namespace {function} lunr
  */
+
+
+var idx = lunr(function () {
+  // use the language (de)
+  this.use(lunr.ko);
+  // then, the normal lunr index initialization
+  this.field('title', { boost: 10 });
+  this.field('body');
+  // now you can call this.add(...) to add documents written in German
+});
+
+
 var lunr = function (config) {
   var builder = new lunr.Builder
 
